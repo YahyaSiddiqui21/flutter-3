@@ -1,315 +1,186 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:meriapp/widgets/container_button_modal.dart';
 
-class CartScreen extends StatefulWidget {
-  const CartScreen({super.key});
+class CartScreen extends StatelessWidget {
+  List imageList = [
+    "nikeair.jpg",
+    "nikeairjordan.jpg",
+    "hoddie.jpg",
+    "shoes.png",
+  ];
 
-  @override
-  State<CartScreen> createState() => _cartscreenState();
-}
+  List productTitels = [
+    "warm zipper",
+    "knitted wool",
+    "Zipper win",
+    "child win",
+  ];
 
-class _cartscreenState extends State<CartScreen> {
+  List prices = [
+    "\$300",
+    "\$300",
+    "\$300",
+    "\$300",
+  ];
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        elevation: 0.0,
+        title: const Text("Cart"),
+        leading: const BackButton(),
         backgroundColor: Colors.transparent,
-        leading: IconButton(
-          icon: Icon(
-            Icons.keyboard_arrow_left,
-            color: Colors.black,
-          ),
-          onPressed: () {},
-        ),
+        foregroundColor: Colors.black,
+        elevation: 0,
+        centerTitle: true,
       ),
-      body: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 16.0),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: <Widget>[
-            Text(
-              "Shopping Cart",
-              style: TextStyle(
-                fontWeight: FontWeight.bold,
-                fontSize: 21.0,
+      body: SingleChildScrollView(
+        child: Padding(
+          padding: const EdgeInsets.all(15),
+          child: Column(
+            children: [
+              Container(
+                child: ListView.builder(
+                  itemCount: imageList.length,
+                  shrinkWrap: true,
+                  scrollDirection: Axis.vertical,
+                  physics: const NeverScrollableScrollPhysics(),
+                  itemBuilder: (context, index) {
+                    return Container(
+                      margin: const EdgeInsets.symmetric(vertical: 15),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Checkbox(
+                            splashRadius: 20,
+                            activeColor: const Color(0xFFDB3022),
+                            value: true,
+                            onChanged: (val) {},
+                          ),
+                          ClipRRect(
+                            borderRadius: BorderRadius.circular(10),
+                            child: Image.asset(
+                              imageList[index],
+                              height: 80,
+                              width: 80,
+                              fit: BoxFit.cover,
+                            ),
+                          ),
+                          Column(
+                            mainAxisAlignment: MainAxisAlignment.end,
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                productTitels[index],
+                                style: const TextStyle(
+                                  color: Colors.black87,
+                                  fontWeight: FontWeight.w900,
+                                  fontSize: 18,
+                                ),
+                              ),
+                              const SizedBox(height: 10),
+                              const Text(
+                                "Hooded Jacket",
+                                style: TextStyle(
+                                  color: Colors.black26,
+                                  fontSize: 16,
+                                ),
+                              ),
+                              const SizedBox(height: 10),
+                              Text(
+                                prices[index],
+                                style: const TextStyle(
+                                  color: Color(0xFFDB2033),
+                                  fontSize: 18,
+                                  fontWeight: FontWeight.w900,
+                                ),
+                              ),
+                            ],
+                          ),
+                          const Row(
+                            children: [
+                              Icon(
+                                CupertinoIcons.minus,
+                                color: Colors.green,
+                              ),
+                              SizedBox(width: 20),
+                              Text(
+                                "1",
+                                style: TextStyle(
+                                    fontSize: 16, fontWeight: FontWeight.w700),
+                              ),
+                              SizedBox(width: 5),
+                              Icon(
+                                CupertinoIcons.plus,
+                                color: Color(0xFFDB2033),
+                              ),
+                            ],
+                          ),
+                        ],
+                      ),
+                    );
+                  },
+                ),
               ),
-            ),
-            SizedBox(height: 18.0),
-            Container(
-              color: Colors.white,
-              child: Row(children: <Widget>[
-                Container(
-                  width: 80.0,
-                  height: 80.0,
-                  decoration: BoxDecoration(
-                    color: Colors.grey[300],
-                    borderRadius: BorderRadius.circular(20.0),
+              const SizedBox(height: 30),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  const Text(
+                    "Select All",
+                    style: TextStyle(
+                      fontSize: 16,
+                      fontWeight: FontWeight.w500,
+                    ),
                   ),
-                  child: Center(
-                    child: Container(
-                        width: 60.0,
-                        height: 60.0,
-                        decoration: BoxDecoration(
-                            image: DecorationImage(
-                              fit: BoxFit.scaleDown,
-                              image: AssetImage("nikeair.jpg"),
-                            ),
-                            borderRadius: BorderRadius.circular(20.0))),
+                  Checkbox(
+                    splashRadius: 20,
+                    activeColor: const Color(0xFFDB2033),
+                    value: false,
+                    onChanged: (val) {},
                   ),
-                ),
-                SizedBox(width: 12.0),
-                Expanded(
-                  child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: <Widget>[
-                        Container(
-                          width: 100.0,
-                          child: Text(
-                            "Nike Air Max Tailwind Iv SP",
-                            style: TextStyle(
-                              fontWeight: FontWeight.bold,
-                            ),
-                          ),
-                        ),
-                        SizedBox(height: 8.0),
-                        Row(children: [
-                          Container(
-                            width: 20.0,
-                            height: 20.0,
-                            decoration: BoxDecoration(
-                              color: Colors.grey[300],
-                              borderRadius: BorderRadius.circular(4.0),
-                            ),
-                            child: Icon(
-                              Icons.add,
-                              color: Colors.white,
-                              size: 15.0,
-                            ),
-                          ),
-                          Padding(
-                            padding:
-                                const EdgeInsets.symmetric(horizontal: 8.0),
-                            child: Text(
-                              "1",
-                              style: TextStyle(
-                                fontSize: 16.0,
-                                fontWeight: FontWeight.bold,
-                              ),
-                            ),
-                          ),
-                          Container(
-                            width: 20.0,
-                            height: 20.0,
-                            decoration: BoxDecoration(
-                              color: Colors.blue[300],
-                              borderRadius: BorderRadius.circular(4.0),
-                            ),
-                            child: Icon(
-                              Icons.add,
-                              color: Colors.white,
-                              size: 15.0,
-                            ),
-                          ),
-                          Spacer(),
-                          Text(
-                            "\u20b9 12,000",
-                            style: TextStyle(
-                              fontWeight: FontWeight.bold,
-                            ),
-                          ),
-                        ]),
-                      ]),
-                ),
-              ]),
-            ),
-            SizedBox(height: 18.0),
-            Container(
-              color: Colors.white,
-              child: Row(children: <Widget>[
-                Container(
-                  width: 80.0,
-                  height: 80.0,
-                  decoration: BoxDecoration(
-                    color: Colors.grey[300],
-                    borderRadius: BorderRadius.circular(20.0),
+                ],
+              ),
+              const Divider(
+                height: 20,
+                thickness: 1,
+                color: Colors.black,
+              ),
+              const Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text(
+                    "Total Payment",
+                    style: TextStyle(
+                      fontSize: 18,
+                      fontWeight: FontWeight.w500,
+                    ),
                   ),
-                  child: Center(
-                    child: Container(
-                        width: 60.0,
-                        height: 60.0,
-                        decoration: BoxDecoration(
-                            image: DecorationImage(
-                              fit: BoxFit.scaleDown,
-                              image: AssetImage("assets/shoes.png"),
-                            ),
-                            borderRadius: BorderRadius.circular(20.0))),
+                  Text(
+                    "\$300.50",
+                    style: TextStyle(
+                      fontSize: 18,
+                      fontWeight: FontWeight.w900,
+                      color: Color(0xFFDB2033),
+                    ),
                   ),
+                ],
+              ),
+              const SizedBox(height: 20),
+              InkWell(
+                onTap: () {},
+                child: ContainerButtonModel(
+                  itext: "Checkout",
+                  containerWidth: MediaQuery.of(context).size.width,
+                  bgColor: const Color(0xFFDB2033),
                 ),
-                SizedBox(width: 12.0),
-                Expanded(
-                  child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: <Widget>[
-                        Container(
-                          width: 100.0,
-                          child: Text(
-                            "Nike Air ",
-                            style: TextStyle(
-                              fontWeight: FontWeight.bold,
-                            ),
-                          ),
-                        ),
-                        SizedBox(height: 8.0),
-                        Row(children: [
-                          Container(
-                            width: 20.0,
-                            height: 20.0,
-                            decoration: BoxDecoration(
-                              color: Colors.grey[300],
-                              borderRadius: BorderRadius.circular(4.0),
-                            ),
-                            child: Icon(
-                              Icons.add,
-                              color: Colors.white,
-                              size: 15.0,
-                            ),
-                          ),
-                          Padding(
-                            padding:
-                                const EdgeInsets.symmetric(horizontal: 8.0),
-                            child: Text(
-                              "1",
-                              style: TextStyle(
-                                fontSize: 16.0,
-                                fontWeight: FontWeight.bold,
-                              ),
-                            ),
-                          ),
-                          Container(
-                            width: 20.0,
-                            height: 20.0,
-                            decoration: BoxDecoration(
-                              color: Colors.blue[300],
-                              borderRadius: BorderRadius.circular(4.0),
-                            ),
-                            child: Icon(
-                              Icons.add,
-                              color: Colors.white,
-                              size: 15.0,
-                            ),
-                          ),
-                          Spacer(),
-                          Text(
-                            "\u20b9 15,000",
-                            style: TextStyle(
-                              fontWeight: FontWeight.bold,
-                            ),
-                          ),
-                        ]),
-                      ]),
-                ),
-              ]),
-            ),
-            SizedBox(height: 18.0),
-            Container(
-              color: Colors.white,
-              child: Row(children: <Widget>[
-                Container(
-                  width: 80.0,
-                  height: 80.0,
-                  decoration: BoxDecoration(
-                    color: Colors.grey[300],
-                    borderRadius: BorderRadius.circular(20.0),
-                  ),
-                  child: Center(
-                    child: Container(
-                        width: 60.0,
-                        height: 60.0,
-                        decoration: BoxDecoration(
-                            image: DecorationImage(
-                              fit: BoxFit.scaleDown,
-                              image: AssetImage("nikeairjordan.jpg"),
-                            ),
-                            borderRadius: BorderRadius.circular(20.0))),
-                  ),
-                ),
-                SizedBox(width: 12.0),
-                Expanded(
-                  child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: <Widget>[
-                        Container(
-                          width: 100.0,
-                          child: Text(
-                            "Nike Air Jordan ",
-                            style: TextStyle(
-                              fontWeight: FontWeight.bold,
-                            ),
-                          ),
-                        ),
-                        SizedBox(height: 8.0),
-                        Row(children: [
-                          Container(
-                            width: 20.0,
-                            height: 20.0,
-                            decoration: BoxDecoration(
-                              color: Colors.grey[300],
-                              borderRadius: BorderRadius.circular(4.0),
-                            ),
-                            child: Icon(
-                              Icons.add,
-                              color: Colors.white,
-                              size: 15.0,
-                            ),
-                          ),
-                          Padding(
-                            padding:
-                                const EdgeInsets.symmetric(horizontal: 8.0),
-                            child: Text(
-                              "1",
-                              style: TextStyle(
-                                fontSize: 16.0,
-                                fontWeight: FontWeight.bold,
-                              ),
-                            ),
-                          ),
-                          Container(
-                            width: 20.0,
-                            height: 20.0,
-                            decoration: BoxDecoration(
-                              color: Colors.blue[300],
-                              borderRadius: BorderRadius.circular(4.0),
-                            ),
-                            child: Icon(
-                              Icons.add,
-                              color: Colors.white,
-                              size: 15.0,
-                            ),
-                          ),
-                          Spacer(),
-                          Text(
-                            "\u20b9 19,000",
-                            style: TextStyle(
-                              fontWeight: FontWeight.bold,
-                            ),
-                          ),
-                        ]),
-                      ]),
-                ),
-              ]),
-            )
-          ],
+              ),
+              const SizedBox(height: 20),
+            ],
+          ),
         ),
       ),
     );
-  }
-}
-
-class CertItem extends StatelessWidget {
-  const CertItem({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return Container();
   }
 }

@@ -10,8 +10,7 @@ class SplashScreen extends StatelessWidget {
             child: Container(
                 decoration: const BoxDecoration(
                     image: DecorationImage(
-                        fit: BoxFit.cover,
-                        image: AssetImage("assets/image2.PNG"))),
+                        fit: BoxFit.cover, image: AssetImage("image3.jpg"))),
                 child:
                     Column(mainAxisAlignment: MainAxisAlignment.end, children: [
                   const SizedBox(height: 10),
@@ -57,55 +56,3 @@ class SplashScreen extends StatelessWidget {
                 ]))));
   }
 }
-// class SplashScreen extends StatelessWidget {
-//   @override
-//   Widget build(BuildContext context) {
-//     return Scaffold(
-//       body: Container(
-//         decoration: BoxDecoration(
-//           gradient: LinearGradient(
-//             begin: Alignment.topCenter,
-//             end: Alignment.bottomCenter,
-//             colors: [Colors.blue, Colors.lightBlue],
-//           ),
-//         ),
-//         child: Center(
-//           child: Column(
-//             mainAxisAlignment: MainAxisAlignment.center,
-//             children: <Widget>[
-//               Container(
-//                 width: 150,
-//                 height: 150,
-//                 decoration: BoxDecoration(
-//                   shape: BoxShape.circle,
-//                   image: DecorationImage(
-//                     image: AssetImage('assets/app_logo.png'),
-//                     fit: BoxFit.fill,
-//                   ),
-//                 ),
-
-//               ),
-//               SizedBox(height: 20),
-//               Text(
-//                 'My App',
-//                 style: TextStyle(
-//                   color: Colors.white,
-//                   fontSize: 24,
-//                   fontWeight: FontWeight.bold,
-//                 ),
-//               ),
-//               SizedBox(height: 10),
-//               Text(
-//                 'Welcome to our app!',
-//                 style: TextStyle(
-//                   color: Colors.white,
-//                 ),
-//               ),
-//             ],
-//           ),
-//         ),
-//       ),
-
-//     );
-//   }
-// }
